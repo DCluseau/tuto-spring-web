@@ -30,11 +30,13 @@
 						<tr>
 							<th>Id</th>
 							<th>Description</th>
+							<th>Marque</th>
 							<th>Prix</th>
 						</tr>	
 						<tr th:each="a:${listArticle}">
 							<td th:text="${a.id}"></td>
 							<td th:text="${a.description}"></td>
+							<td th:text="${a.brand}"></td>
 							<td th:text="${a.price}"></td>
 							<td>
 								<a th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}" class="btn btn-danger">Delete</a>
