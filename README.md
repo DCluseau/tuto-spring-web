@@ -17,7 +17,4 @@ There are two roles in the application (Spring Security):
 
 <img width="860" height="646" alt="image" src="https://github.com/user-attachments/assets/bfe6a0c3-aadb-4e47-8ab6-dae358beddd5" />
 
-APP ARCHITECTURE
-(SERVER SIDE)
-<img width="1147" height="547" alt="image" src="https://github.com/user-attachments/assets/359863a6-3d52-4034-a899-ab3cc74ff063" />
 
