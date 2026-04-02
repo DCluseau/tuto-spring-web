@@ -26,14 +26,20 @@
 						
 					</table>
 				</div>
-				<div class="panel-footer">
-					<ul class="nav nav-pills">
-						<li th:class="${currentPage==status.index}?'active':''" th:each="page, status:${pages}">
-							<a th:href="@{/cart(page=${status.index})}" th:text="${status.index+1}"></a>
-						</li>
-					</ul>
+				<div class="panel-footer row">
+					<div class="col-sm-6">
+						<ul class="nav nav-pills">
+							<li th:class="${currentPage==status.index}?'active':''" th:each="page, status:${pages}">
+								<a th:href="@{/cart(page=${status.index})}" th:text="${status.index+1}"></a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-6">
+						<a href="#" class="btn btn-success">Passer la commande</a>
+					</div>
 				</div>
 			</div>
+			
 		</div>
 	</body>
 </html>
