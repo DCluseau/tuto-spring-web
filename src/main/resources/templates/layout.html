@@ -20,13 +20,17 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a class="active" th:href="@{/index}">Accueil</a></li>
-					<li><a th:href="@{/article}">Articles</a></li>
-					<li><a href="#">Page 3</a></li>
+					<li><a th:href="@{/article}">Ajouter un article</a></li>
 				</ul>
 			</div>
 		</nav>
-			<section layout:fragment="content">
-				
-			</section>
+		<nav class="navbar">
+			<div class="container-fluid">
+				<ul class="nav nav-pills">
+					<li th:each="c:${listCategory}"><a th:href="@{/category(page=${currentPage},category=${c.name})}" th:text="${c.name}"></a></li>
+				</ul>
+			</div>
+		</nav>
+		<section layout:fragment="content"></section>
 	</body>
 </html>			
