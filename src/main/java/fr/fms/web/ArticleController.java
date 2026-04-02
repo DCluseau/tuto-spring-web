@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.dao.ArticleRepository;
+import fr.fms.dao.CartRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
+import fr.fms.entities.Cart;
 import fr.fms.entities.Category;
 
 @Controller
@@ -26,6 +28,9 @@ public class ArticleController {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	CartRepository cartRepository;
 	
 	public ArticleController() {}
 	
@@ -98,6 +103,28 @@ public class ArticleController {
 		article.setCategory(category);
 		articleRepository.save(article);
 		return "redirect:/index";
+	}
+	
+	@GetMapping("/cart")
+	public String cart(Model model, @RequestParam(name="page", defaultValue = "0") int page) {
+		Cart cart = cartRepository.findById(1L).get();
+		Page<Article> articles = articleRepository.findByCarts(cart, PageRequest.of(page,  5));
+		List<Category> categories = categoryRepository.findAll();
+		model.addAttribute("listArticle", articles.getContent());
+		model.addAttribute("pages", new int[articles.getTotalPages()]);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("listCategory", categories);
+		
+		return "cart";
+	}
+	
+	@GetMapping("/addtocart")
+	public String addToCart(Model model, Long id) {
+		Article article = articleRepository.findById(id).get();
+		Cart cart = cartRepository.findById(1L).get();
+		article.addToCart(cart);
+		articleRepository.save(article);
+		return "redirect:/cart";
 	}
 
 }

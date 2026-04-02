@@ -15,16 +15,7 @@
 	<body>
 		<div layout:fragment="content">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Liste des articles</div>
-				
-				<div class="panel-body">
-					<form th:action="@{/index}" method="get">
-						<label>Keyword</label>
-						<input type="text" name="keyword" th:value="${keyword}">
-						<button type="submit" class="btn btn-primary">Search</button>
-					</form>
-				</div>
-				
+				<div class="panel-heading">Panier</div>
 				<div class="panel-body">
 					<table class="table">
 						<tr>
@@ -32,31 +23,19 @@
 							<th>Description</th>
 							<th>Marque</th>
 							<th>Prix</th>
-							<th></th>
-							<th></th>
-							<th></th>
 						</tr>	
 						<tr th:each="a:${listArticle}">
 							<td th:text="${a.id}"></td>
 							<td th:text="${a.description}"></td>
 							<td th:text="${a.brand}"></td>
 							<td th:text="${a.price}"></td>
-							<td>
-								<a th:href="@{/addtocart(id=${a.id})}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-							</td>
-							<td>
-								<a th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}" class="btn btn-danger">Delete</a>
-							</td>
-							<td>
-								<a th:href="@{/edit(id=${a.id})}" class="btn btn-primary">Edit</a>
-							</td>
 						</tr>
 					</table>
 				</div>
 				<div class="panel-footer">
 					<ul class="nav nav-pills">
 						<li th:class="${currentPage==status.index}?'active':''" th:each="page, status:${pages}">
-							<a th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index+1}"></a>
+							<a th:href="@{/cart(page=${status.index})}" th:text="${status.index+1}"></a>
 						</li>
 					</ul>
 				</div>

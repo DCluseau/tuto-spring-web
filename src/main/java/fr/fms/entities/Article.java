@@ -1,11 +1,13 @@
 package fr.fms.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -37,6 +39,9 @@ public class Article implements Serializable {
 	
 	@ManyToOne
 	private Category category;
+	
+	@ManyToMany
+	private Collection<Cart> carts;
 	
 	public Article(String brand, String description, Double price) {
 		this.description = description;
@@ -98,6 +103,10 @@ public class Article implements Serializable {
 	 */
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	public void addToCart(Cart cart) {
+		this.carts.add(cart);
 	}
 	
 }
