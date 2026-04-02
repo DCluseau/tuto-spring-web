@@ -42,6 +42,9 @@
 							<td th:text="${a.brand}"></td>
 							<td th:text="${a.price}"></td>
 							<td>
+								<a th:href="@{/addtocart(id=${a.id})}"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+							</td>
+							<td>
 								<a th:href="@{/delete(id=${a.id}, page=${currentPage}, keyword=${keyword})}" class="btn btn-danger">Delete</a>
 							</td>
 							<td>

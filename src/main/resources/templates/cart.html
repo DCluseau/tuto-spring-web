@@ -29,7 +29,11 @@
 							<td th:text="${a.description}"></td>
 							<td th:text="${a.brand}"></td>
 							<td th:text="${a.price}"></td>
+							<td>
+								<a th:href="@{/removefromcart(id=${a.id})}" class="btn btn-danger">Remove from cart</a>
+							</td>
 						</tr>
+						
 					</table>
 				</div>
 				<div class="panel-footer">

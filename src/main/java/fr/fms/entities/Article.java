@@ -109,4 +109,8 @@ public class Article implements Serializable {
 		this.carts.add(cart);
 	}
 	
+	public void removeFromCart(Cart cart) {
+		this.carts.remove(cart);
+	}
+	
 }

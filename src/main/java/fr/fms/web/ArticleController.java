@@ -126,5 +126,14 @@ public class ArticleController {
 		articleRepository.save(article);
 		return "redirect:/cart";
 	}
+	
+	@GetMapping("/removefromcart")
+	public String removeFromCart(Model model, Long id) {
+		Article article = articleRepository.findById(id).get();
+		Cart cart = cartRepository.findById(1L).get();
+		article.removeFromCart(cart);
+		articleRepository.save(article);
+		return "redirect:/cart";
+	}
 
 }
