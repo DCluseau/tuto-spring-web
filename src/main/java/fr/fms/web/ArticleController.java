@@ -52,8 +52,9 @@ public class ArticleController {
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("listCategory", categories);
+		model.addAttribute("category", cat);
 		
-		return "articles";
+		return "category";
 	}
 	
 	@GetMapping("/delete")
@@ -66,6 +67,7 @@ public class ArticleController {
 	public String edit(Model model, Long id) {
 		Article article = articleRepository.getById(id);
 		model.addAttribute(article);
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "edit";
 	}
 	
@@ -77,18 +79,23 @@ public class ArticleController {
 	}
 	
 	@PostMapping("/save")
-	public String save(Model model, @Valid Article article, BindingResult bindingResult) {
+	public String save(Model model, @Valid Article article, Long categoryId, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "article";
 		}
+		Category category = categoryRepository.findById(categoryId).get();
+		article.setCategory(category);
 		articleRepository.save(article);
 		return "redirect:/index";
 	}
+	
 	@PostMapping("/update")
-	public String update(Model model, @Valid Article article, BindingResult bindingResult) {
+	public String update(Model model, @Valid Article article, Long categoryId, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "edit";
 		}
+		Category category = categoryRepository.findById(categoryId).get();
+		article.setCategory(category);
 		articleRepository.save(article);
 		return "redirect:/index";
 	}
